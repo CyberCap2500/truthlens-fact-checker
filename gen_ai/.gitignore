@@ -1,5 +1,11 @@
-venv/
-__pycache__/
-*.pyc
-.secrets.toml
+# Ignore Streamlit secrets file
+.streamlit/secrets.toml
 
+# Python cache
+__pycache__/
+
+# VSCode settings
+.vscode/
+
+# Virtual environment
+venv/
