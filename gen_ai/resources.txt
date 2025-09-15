@@ -1,0 +1,41 @@
+# Resources Used in the TruthLens Project
+
+This file lists the key external resources, APIs, and libraries used in the TruthLens application.
+
+## APIs
+
+1.  **Google Generative AI API (Gemini)**
+    -   **Model:** `gemini-2.5-pro`
+    -   **Usage:** Core AI analysis for claims, images, and chatbot responses.
+    -   **Source:** https://ai.google.dev/
+
+2.  **Google Fact Check Tools API**
+    -   **Usage:** Fetching external fact-checking articles and references for claims.
+    -   **Source:** https://developers.google.com/fact-check/tools/api
+
+## AI/ML Models
+
+1.  **`gemini-2.5-pro`**
+    -   **Provider:** Google
+    -   **Usage:** Main model for generative tasks (analysis, explanation, chat).
+
+2.  **`all-MiniLM-L6-v2`**
+    -   **Provider:** Sentence-Transformers (via Hugging Face)
+    -   **Usage:** Generating text embeddings for similarity search between claims.
+    -   **Source:** https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2
+
+## Key Python Libraries
+
+-   **Streamlit:** For building the interactive web application UI.
+-   **google-generativeai:** The official Python client for the Gemini API.
+-   **requests:** For making HTTP requests to the Google Fact Check Tools API.
+-   **pandas & numpy:** For data analysis and statistics in the analytics module.
+-   **sentence-transformers:** For loading and using the text embedding model.
+-   **Pillow (PIL):** For image processing and handling user uploads.
+-   **sqlite3:** For the local database (`truthlens.db`) that stores analysis history and claims.
+
+## Frontend Libraries
+
+1.  **Lenis (`@studio-freight/lenis`)**
+    -   **Usage:** Provides a smooth scrolling effect for a better user experience.
+    -   **Source:** https://github.com/studio-freight/lenis
