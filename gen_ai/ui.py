@@ -385,8 +385,11 @@ def render_image_analysis_section():
         )
 
     if uploaded_file is not None:
-        st.markdown("### 📸 Uploaded Image")
-        st.image(uploaded_file, caption="Uploaded Image", use_column_width=True)
+        # Center the image and control its size
+        col1, col2, col3 = st.columns([1, 2, 1])
+        with col2:
+            st.markdown("<h3 style='text-align: center;'>📸 Uploaded Image</h3>", unsafe_allow_html=True)
+            st.image(uploaded_file, caption="Image to be analyzed", use_container_width=True)
 
         try:
             file_extension = uploaded_file.name.split('.')[-1].lower()
@@ -408,18 +411,24 @@ def render_image_analysis_section():
         col1, col2, col3 = st.columns([1, 1, 1])
         with col2:
             if st.button("🔍 Analyze Image", type="primary", use_container_width=True):
-                progress_bar = st.progress(0, "Starting image analysis...")
-                with st.spinner("Analyzing image..."):
+                progress_bar = st.progress(0, "Preparing image for analysis...")
+                # Simulate progress to give better user feedback
+                progress_bar.progress(25, "Sending image to AI model...")
+                with st.spinner("AI is analyzing the image. This may take a moment..."):
                     image_analysis_result = analyze_image(st.session_state.model, image_bytes)
-                    progress_bar.progress(100, "Analysis complete!")
+                progress_bar.progress(100, "Analysis complete!")
 
                 st.markdown("### 🔍 Image Analysis Results")
                 if image_analysis_result:
+                    # Use a more prominent result card for the analysis output
                     st.markdown(f"""
-                    <div style="background: #d1ecf1; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #17a2b8; margin: 1rem 0;">
-                        <h4 style="color: #0c5460; margin-top: 0;">📋 Analysis Report</h4>
-                        <p style="margin-bottom: 0;">{image_analysis_result}</p>
-                    </div>
+                    <div class="result-card" style="border-left: 5px solid var(--primary); background-color: #f8f9fa;">
+                        <h4 style="color: var(--primary); margin-top: 0; font-size: 1.5rem;">
+                            <span style="font-size: 1.8rem; vertical-align: middle;">📋</span> AI Analysis Report
+                        </h4>
+                        <div style="font-size: 1.1rem; line-height: 1.6; color: #343a40;">
+                            {image_analysis_result}
+                        </div>
                     """, unsafe_allow_html=True)
                     st.info("💡 **Pro Tip:** For additional verification, try a reverse image search using Google Images or TinEye to find where else this image has been used.")
                 else:
