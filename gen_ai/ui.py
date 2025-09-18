@@ -113,7 +113,7 @@ def render_css():
             align-items: center;
             gap: 0.75rem;
             font-size: 1.5rem;
-            color: var(--text);
+            color: var(--primary);
             margin-bottom: 1rem;
         }
     </style>
